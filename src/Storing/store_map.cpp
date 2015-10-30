@@ -15,6 +15,7 @@ public:
 	void open(string filename){
 		ifstream ifs;
 		string buff_word;
+		int buff_n, buff_tot;
 		double buff_p;
 		ifs.open(filename);
 
@@ -23,10 +24,12 @@ public:
 		}
 		else{
 			while (cin >> buff_word){
+				cin >> buff_n;
+				cin >> buff_tot;
 				cin >> buff_p;
-				proba.insert(pair<string, double>(buff_word, buff_p));
+				proba.insert(pair<string, hits>(buff_word, { buff_n, buff_tot, buff_p }));
 			}
-			
+
 		}
 		ifs.close();
 	}
@@ -38,8 +41,8 @@ public:
 			cerr << "ERROR : couldn't open file " << filename << endl;
 		}
 		else{
-			for (pair<string, double> p : proba){
-				cout << p.first << " " << p.second << endl;
+			for (pair<string, hits> p : proba){
+				cout << p.first << " " << p.second.n << " " << p.second.tot << " " << p.second.proba << endl;
 			}
 		}
 		ofs.close();
@@ -57,18 +60,31 @@ public:
 		return proba.find(word) != proba.end();
 	}
 
-	virtual void create(string word, double p){
-		proba.insert(pair<string, double>(word, p));
+	virtual void create(string word, hits h){
+		proba.insert(pair<string, hits>(word, h));
 	}
 
-	// Access or modify proba
-	virtual double get_proba(string word){
+	// Access or modify hits
+	virtual hits get_hits(string word){
 		return proba[word];
 	}
-	void set_proba(string word, double p){
-		proba[word] = p;
+	void set_hits(string word, hits h){
+		proba[word] = h;
 	}
 
+	// Access proba
+	double get_proba(string word){
+		return proba[word].proba;
+	}
+
+	// calculate all proba
+	void calculate_probas(){
+		for (pair<string, hits> p : proba){
+			p.second.proba = ((float)p.second.n) / ((float)p.second.tot);
+		}
+	}
+
+
 private:
-	map<string, double> proba;
+	map<string, hits> proba;
 };
