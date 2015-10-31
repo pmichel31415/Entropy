@@ -1,17 +1,15 @@
-#ifndef STORE_H
-#define STORE_H
+#ifndef STORE_TREE_H
+#define STORE_TREE_H
 
-#include <string>
-#include <queue>
-#pragma once
-using namespace std;
+#include "store.h"
+#include "simple_tree.h"
 
-
-class Store
+class Store_tree : public Store
 {
 public:
-	Store();
-	~Store();
+	Store_tree();
+
+	~Store_tree();
 
 	// Open and close store
 	virtual void open(string filename);
@@ -33,7 +31,8 @@ public:
 	virtual double get_proba(queue<string> seq);
 
 
-private:
 
+private:
+	Simple_tree* hits;
 };
-#endif
+#endif // !STORE_TREE_H
