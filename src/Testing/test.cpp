@@ -7,17 +7,6 @@ void print(queue<string> q){
 	}
 }
 
-queue<string> split(string str, char delimiter) {
-	queue<string> internal;
-	stringstream ss(str); // Turn the string into a stream.
-	string tok;
-
-	while (getline(ss, tok, delimiter)) {
-		internal.push(tok);
-	}
-
-	return internal;
-}
 
 void incr(queue<string> test_q, Store& s){
 	if (!s.exists(test_q)){
@@ -32,7 +21,7 @@ void incr(queue<string> test_q, Store& s){
 		cout << "Frequence incremented" << endl;
 		h = s.get_hits(test_q);
 		double p = s.get_proba(test_q);
-		print(test_q); cout << "has now been encountered " << h <<" times. It's probability of appearence is "<< p << endl;
+		print(test_q); cout << "has now been encountered " << h << " times. It's probability of appearence is " << p << endl;
 	}
 }
 
@@ -66,6 +55,29 @@ void test_tree(){
 	for (int i = 0; i < test_queues_2.size(); i++){
 		incr(split(test_queues_2[i], ':'), s);
 	}
+
+	cout << "Closing store" << endl;
+	s.close("store_tree.txt");
+}
+
+void test_construct(){
+	Store_tree s;
+	cout << "Beginning test" << endl;
+	cout << "--------------" << endl;
+	s.open("store_tree.txt");
+	if (!s.is_init()){
+		cerr << "Store is not initialized, initializing..." << endl;
+		s.init();
+		cerr << "Store initialized!" << endl;
+	}
+
+	vector<string> txt = read_text("poem.txt");
+	for (int i = 0; i < txt.size(); i++){
+		cout << "Assimilating : " << endl;
+		cout << txt[i] << endl << endl;
+		assimilate_text(txt[i], s, 3);
+	}
+
 
 	cout << "Closing store" << endl;
 	s.close("store_tree.txt");
