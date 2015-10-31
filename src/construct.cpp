@@ -1,5 +1,7 @@
 #include "construct.h"
 
+// Split string in array with delimiter
+
 queue<string> split(string str, char delimiter) {
 	queue<string> internal;
 	stringstream ss(str); // Turn the string into a stream.
@@ -12,6 +14,8 @@ queue<string> split(string str, char delimiter) {
 	return internal;
 }
 
+// Split string in queue of chars (strings)
+
 queue<string> split_chars(string str) {
 	queue<string> internal;
 	for (int i = 0; i < str.size(); i++){
@@ -21,6 +25,7 @@ queue<string> split_chars(string str) {
 	return internal;
 }
 
+// Get [length] chars up to [index] in [txt] and return a string queue
 
 queue<string> get_char_seq(string txt, int index, int length){
 	if (index < length){
@@ -31,6 +36,8 @@ queue<string> get_char_seq(string txt, int index, int length){
 	}
 }
 
+// Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
+
 void assimilate_text(string txt, Store &s, int order){
 	string chars;
 	queue<string> seq;
@@ -39,6 +46,8 @@ void assimilate_text(string txt, Store &s, int order){
 		s.add_hits(seq, 1);
 	}
 }
+
+// Checks if char is either blank (tab/space/rc/eol), a point, an apostrophy or a lower/upper case letter
 
 bool is_acceptable(char c){
 	bool is_blank = (c == 32) || (c == 9) || (c == 10) || (c == 13);
@@ -49,9 +58,14 @@ bool is_acceptable(char c){
 
 	return is_blank || is_point || is_upper_c || is_lower_c;
 }
+
+// Checks if character denotes the end of a sentence
+
 bool is_point(char c){
 	return c == 46;
 }
+
+// Normalizes letter to upper case
 
 void to_upper_c(char& c){
 	if ((c > 96) && (c < 123)){
@@ -59,11 +73,15 @@ void to_upper_c(char& c){
 	}
 }
 
+// Normalizes blanks to space
+
 void blank_to_space(char& c){
 	if ((c == 9) || (c == 10) || (c == 13)){
 		c = 32;
 	}
 }
+
+// Returns array of simplified strings from text file
 
 vector<string> read_text(string filename){
 	vector<string> ret;
