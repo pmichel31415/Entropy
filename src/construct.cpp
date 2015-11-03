@@ -76,9 +76,10 @@ void to_upper_c(char& c){
 // Normalizes blanks to space
 
 void blank_to_space(char& c){
-	if ((c == 9) || (c == 10) || (c == 13)){
-		c = 32;
+	if ((c == 9) || (c == 10) || (c == 13) || (c == 32)){
+		c = 95;
 	}
+	
 }
 
 // Returns array of simplified strings from text file
