@@ -64,21 +64,53 @@ void test_construct(){
 	Store_tree s;
 	cout << "Beginning test" << endl;
 	cout << "--------------" << endl;
+	cout << "Opening store_tree.txt : " << endl;
 	s.open("store_tree.txt");
+	cout << "Opened " << endl;
 	if (!s.is_init()){
 		cerr << "Store is not initialized, initializing..." << endl;
 		s.init();
 		cerr << "Store initialized!" << endl;
 	}
 
-	vector<string> txt = read_text("poem.txt");
+	vector<string> txt = read_text("trois_mousquetaires.txt");
 	for (int i = 0; i < txt.size(); i++){
 		cout << "Assimilating : " << endl;
 		cout << txt[i] << endl << endl;
-		assimilate_text(txt[i], s, 3);
+		assimilate_text(txt[i], s, 4);
 	}
 
 
 	cout << "Closing store" << endl;
 	s.close("store_tree.txt");
+}
+
+void test_gen(){
+	Store_tree s;
+
+	srand(time(0));
+
+	cout << "Beginning test" << endl;
+	cout << "--------------" << endl;
+	cout << "Opening store_tree.txt : " << endl;
+	s.open("store_tree.txt");
+	cout << "Opened " << endl;
+	if (!s.is_init()){
+		cerr << "Store is not initialized, initializing..." << endl;
+		s.init();
+		cerr << "Store initialized!" << endl;
+	}
+	cout << "Generating first text : Markov model of order 0 : " << endl;
+	cout << "------------------------------------------------- " << endl;
+	cout << generate_text(s, 200, 0) << endl << endl;
+	cout << "Generating first text : Markov model of order 1 : " << endl;
+	cout << "------------------------------------------------- " << endl;
+	cout << generate_text(s, 200, 1) << endl << endl;
+	cout << "Generating first text : Markov model of order 2 : " << endl;
+	cout << "------------------------------------------------- " << endl;
+	cout << generate_text(s, 200, 2) << endl << endl;
+	cout << "Generating first text : Markov model of order 3 : " << endl;
+	cout << "------------------------------------------------- " << endl;
+	cout << generate_text(s, 200, 3) << endl << endl;
+
 }
