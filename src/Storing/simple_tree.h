@@ -4,12 +4,19 @@
 #include <queue>
 #include <iostream>
 #include <string>
+#include <random>
 
 using namespace std;
 
 class Simple_tree
 {
 public:
+
+	string hd;
+	vector<Simple_tree*> sons;
+	int freq;
+	int sons_tot;
+
 	Simple_tree();
 	Simple_tree(string str, int f);
 
@@ -27,11 +34,12 @@ public:
 
 	double get_p(queue<string> seq);
 
+	string get_rand(queue<string> prev);
+
 
 private:
-	vector<Simple_tree*> sons;
-	int freq;
-	int sons_tot;
-	string hd;
+	
+	
+	
 };
 #endif // !SIMPLE_TREE_H

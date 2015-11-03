@@ -30,6 +30,8 @@ public:
 	// Access proba
 	virtual double get_proba(queue<string> seq);
 
+	// Generate next word/char in a serie randomly
+	virtual string next(queue<string> seq);
 
 
 private:

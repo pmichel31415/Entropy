@@ -3,7 +3,9 @@
 using namespace std;
 
 
-Simple_tree::Simple_tree(){}
+Simple_tree::Simple_tree(){
+
+}
 
 Simple_tree::Simple_tree(string str, int f)
 	:hd(str),
@@ -26,18 +28,15 @@ void Simple_tree::read_from_file(istream* ifs){
 	sons_tot = buff_f;
 
 	(*ifs) >> n;
-
 	for (int i = 0; i < n; i++){
-		Simple_tree* son = new Simple_tree();
+		sons.push_back(new Simple_tree());
 		// Fill son informations
 		(*ifs) >> buff_word;
-		son->hd = buff_word;
+		sons[i]->hd = buff_word;
 		(*ifs) >> buff_f;
-		son->freq = buff_f;
+		sons[i]->freq = buff_f;
 
-		son->read_from_file(ifs);
-
-		sons.push_back(son);
+		sons[i]->read_from_file(ifs);
 	}
 }
 
@@ -116,5 +115,30 @@ double Simple_tree::get_p(queue<string> seq){
 		}
 	}
 	return 0;
+}
+
+string Simple_tree::get_rand(queue<string> prev){
+
+	if (prev.empty()){
+		if (sons.size() == 0) return "";
+		int r = (rand() / (double)RAND_MAX)*((double)sons_tot);
+		int h = 0, i = 0;
+		while (r >= h && i < sons.size()){
+			h += sons[i]->freq;
+			i++;
+		}
+		return sons[i - 1]->hd;
+
+	}
+
+	string str = prev.front();
+	prev.pop();
+	
+	for (int i = 0; i < sons.size(); i++){
+		if (sons[i]->hd == str) return sons[i]->get_rand(prev);
+	}
+
+
+	return "";
 }
 

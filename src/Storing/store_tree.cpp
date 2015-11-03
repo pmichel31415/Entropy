@@ -69,3 +69,7 @@ void Store_tree::add_hits(queue<string> seq, int nb){
 double Store_tree::get_proba(queue<string> seq){
 	return hits->get_p(seq);
 }
+
+string Store_tree::next(queue<string> seq){
+	return hits->get_rand(seq);
+}

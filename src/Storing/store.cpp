@@ -16,3 +16,4 @@ int Store::get_hits(queue<string> seq){ return 0; }
 void Store::add_hits(queue<string> seq, int nb){}
 
 double Store::get_proba(queue<string> seq){ return 0.0; }
+string Store::next(queue<string> seq){ return ""; }
