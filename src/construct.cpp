@@ -65,13 +65,17 @@ void blank_to_space(wchar_t& c){
 	if ((c == 9) || (c == 10) || (c == 13) || (c == 32)){
 		c = 95;
 	}
+	
 
+}
+
+bool check_blank(wstring str, wchar_t c){
+	return str[str.size()] != 95 || c != 95;
 }
 
 // Returns array of simplified strings from text file
 
-vector<wstring> read_text(wstring filename){
-	vector<wstring> ret;
+wstring read_text(wstring filename){
 	wstring buff_s = L"";
 	wchar_t buff;
 	wifstream ifs;
@@ -82,18 +86,12 @@ vector<wstring> read_text(wstring filename){
 	}
 	else{
 		while (ifs.get(buff)){
-			//if (is_acceptable(buff)){
-			//to_upper_c(buff);
 			blank_to_space(buff);
+			if (check_blank(buff_s,buff))
 			buff_s.push_back(buff);
-			if (is_point(buff)){
-				ret.push_back(buff_s);
-				buff_s = L"";
-			}
-			//}
 		}
 	}
 
 	ifs.close();
-	return ret;
+	return buff_s;
 }

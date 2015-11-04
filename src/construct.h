@@ -19,6 +19,6 @@ void assimilate_text(wstring txt, Store &s, int order);
 
 // Returns array of simplified strings from text file
 
-vector<wstring> read_text(wstring filename);
+wstring read_text(wstring filename);
 
 #endif

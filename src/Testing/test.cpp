@@ -93,12 +93,11 @@ void test_construct(){
 		wcerr << "Store initialized!" << endl;
 	}
 
-	vector<wstring> txt = read_text(L"trois_mousquetaires.txt");
-	for (int i = 0; i < txt.size(); i++){
-		wcout << "Assimilating : " << endl;
-		wcout << txt[i] << endl << endl;
-		assimilate_text(txt[i], s, 4);
-	}
+	wstring txt = read_text(L"trois_mousquetaires.txt");
+	wcout << "Assimilating : " << endl;
+	wcout << txt << endl << endl;
+	assimilate_text(txt, s, 4);
+
 
 
 	wcout << "Closing store" << endl;
