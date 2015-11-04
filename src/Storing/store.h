@@ -14,26 +14,26 @@ public:
 	~Store();
 
 	// Open and close store
-	virtual void open(string filename);
-	virtual void close(string filename);
+	virtual void open(wstring filename);
+	virtual void close(wstring filename);
 
 	// Check if store is initialized (e.g. table was created, etc.) and initializes it
 	virtual bool is_init();
 	virtual void init();
 
 	// Check if word exists and insert it
-	virtual bool exists(queue<string> seq);
-	virtual void create(queue<string> seq, int nb);
+	virtual bool exists(queue<wstring> seq);
+	virtual void create(queue<wstring> seq, int nb);
 
 	// Access or modify hits
-	virtual int get_hits(queue<string> seq);
-	virtual void add_hits(queue<string> seq, int nb);
+	virtual int get_hits(queue<wstring> seq);
+	virtual void add_hits(queue<wstring> seq, int nb);
 
 	// Access proba
-	virtual double get_proba(queue<string> seq);
+	virtual double get_proba(queue<wstring> seq);
 
 	// Generate next word/char in a serie randomly
-	virtual string next(queue<string> seq);
+	virtual wstring next(queue<wstring> seq);
 
 
 private:

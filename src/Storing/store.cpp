@@ -3,17 +3,17 @@
 Store::Store(){}
 Store::~Store(){}
 
-void Store::open(string filename){}
-void Store::close(string filename){}
+void Store::open(wstring filename){}
+void Store::close(wstring filename){}
 
 bool Store::is_init(){ return false; }
 void Store::init(){}
 
-bool Store::exists(queue<string> seq){ return false; }
-void Store::create(queue<string> seq, int nb){}
+bool Store::exists(queue<wstring> seq){ return false; }
+void Store::create(queue<wstring> seq, int nb){}
 
-int Store::get_hits(queue<string> seq){ return 0; }
-void Store::add_hits(queue<string> seq, int nb){}
+int Store::get_hits(queue<wstring> seq){ return 0; }
+void Store::add_hits(queue<wstring> seq, int nb){}
 
-double Store::get_proba(queue<string> seq){ return 0.0; }
-string Store::next(queue<string> seq){ return ""; }
+double Store::get_proba(queue<wstring> seq){ return 0.0; }
+wstring Store::next(queue<wstring> seq){ return L""; }

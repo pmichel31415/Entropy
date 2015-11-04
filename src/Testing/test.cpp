@@ -1,88 +1,108 @@
 #include "test.h"
 
-void print(queue<string> q){
+
+// Split string in array with delimiter
+
+queue<wstring> split(wstring str, wchar_t delimiter) {
+	queue<wstring> internal;
+	wstringstream ss(str); // Turn the string into a stream.
+	wstring tok;
+	int i0 = 0;
+	for (int i = 0; i < str.size(); i++){
+		if (str.at(i) == delimiter){
+			tok = str.substr(i0, i - i0);
+			internal.push(tok);
+			i0 = i + 1;
+		}
+	}
+
+	return internal;
+}
+
+
+void print(queue<wstring> q){
 	while (!q.empty()){
-		cout << q.front() << " ";
+		wcout << q.front() << " ";
 		q.pop();
 	}
 }
 
 
-void incr(queue<string> test_q, Store& s){
+void incr(queue<wstring> test_q, Store& s){
 	if (!s.exists(test_q)){
-		print(test_q); cout << "is not in tree, adding..." << endl;
+		print(test_q); wcout << "is not in tree, adding..." << endl;
 		s.create(test_q, 1);
-		cout << "Created" << endl;
+		wcout << "Created" << endl;
 	}
 	else{
 		int h = s.get_hits(test_q);
-		print(test_q); cout << "is already in tree with frequence " << h << endl;
+		print(test_q); wcout << "is already in tree with frequence " << h << endl;
 		s.add_hits(test_q, 1);
-		cout << "Frequence incremented" << endl;
+		wcout << "Frequence incremented" << endl;
 		h = s.get_hits(test_q);
 		double p = s.get_proba(test_q);
-		print(test_q); cout << "has now been encountered " << h << " times. It's probability of appearence is " << p << endl;
+		print(test_q); wcout << "has now been encountered " << h << " times. It's probability of appearence is " << p << endl;
 	}
 }
 
 void test_tree(){
 	Store_tree s;
-	cout << "Beginning test" << endl;
-	cout << "--------------" << endl;
-	s.open("store_tree.txt");
+	wcout << "Beginning test" << endl;
+	wcout << "--------------" << endl;
+	s.open(L"store_tree.txt");
 	if (!s.is_init()){
-		cerr << "Store is not initialized, initializing..." << endl;
+		wcerr << "Store is not initialized, initializing..." << endl;
 		s.init();
-		cerr << "Store initialized!" << endl;
+		wcerr << "Store initialized!" << endl;
 	}
 
-	vector<string> test_queues_1 = {
-		"a:b:c",
-		"a:b:c",
-		"a:b:a",
-		"a:c:c",
-		"a:b:d"
+	vector<wstring> test_queues_1 = {
+		L"a:b:c",
+		L"a:b:c",
+		L"a:b:a",
+		L"a:c:c",
+		L"a:b:d"
 	};
-	vector<string> test_queues_2 = {
-		"a",
-		"a:b",
-		"a:b:c",
-		"b:c:c",
-		"b:b:d",
-		"b:b"
+	vector<wstring> test_queues_2 = {
+		L"a",
+		L"a:b",
+		L"a:b:c",
+		L"b:c:c",
+		L"b:b:d",
+		L"b:b"
 	};
 
 	for (int i = 0; i < test_queues_2.size(); i++){
-		incr(split(test_queues_2[i], ':'), s);
+		incr(split(test_queues_2[i], L':'), s);
 	}
 
-	cout << "Closing store" << endl;
-	s.close("store_tree.txt");
+	wcout << "Closing store" << endl;
+	s.close(L"store_tree.txt");
 }
 
 void test_construct(){
 	Store_tree s;
-	cout << "Beginning test" << endl;
-	cout << "--------------" << endl;
-	cout << "Opening store_tree.txt : " << endl;
-	s.open("store_tree.txt");
-	cout << "Opened " << endl;
+	wcout << "Beginning test" << endl;
+	wcout << "--------------" << endl;
+	wcout << "Opening store_tree.txt : " << endl;
+	s.open(L"store_tree.txt");
+	wcout << "Opened " << endl;
 	if (!s.is_init()){
-		cerr << "Store is not initialized, initializing..." << endl;
+		wcerr << "Store is not initialized, initializing..." << endl;
 		s.init();
-		cerr << "Store initialized!" << endl;
+		wcerr << "Store initialized!" << endl;
 	}
 
-	vector<string> txt = read_text("trois_mousquetaires.txt");
+	vector<wstring> txt = read_text(L"trois_mousquetaires.txt");
 	for (int i = 0; i < txt.size(); i++){
-		cout << "Assimilating : " << endl;
-		cout << txt[i] << endl << endl;
+		wcout << "Assimilating : " << endl;
+		wcout << txt[i] << endl << endl;
 		assimilate_text(txt[i], s, 4);
 	}
 
 
-	cout << "Closing store" << endl;
-	s.close("store_tree.txt");
+	wcout << "Closing store" << endl;
+	s.close(L"store_tree.txt");
 }
 
 void test_gen(){
@@ -90,27 +110,29 @@ void test_gen(){
 
 	srand(time(0));
 
-	cout << "Beginning test" << endl;
-	cout << "--------------" << endl;
-	cout << "Opening store_tree.txt : " << endl;
-	s.open("store_tree.txt");
-	cout << "Opened " << endl;
+	wcout << "Beginning test" << endl;
+	wcout << "--------------" << endl;
+	wcout << "Opening store_tree.txt : " << endl;
+	s.open(L"store_tree.txt");
+	wcout << "Opened " << endl;
 	if (!s.is_init()){
-		cerr << "Store is not initialized, initializing..." << endl;
+		wcerr << "Store is not initialized, initializing..." << endl;
 		s.init();
-		cerr << "Store initialized!" << endl;
+		wcerr << "Store initialized!" << endl;
 	}
-	cout << "Generating first text : Markov model of order 0 : " << endl;
-	cout << "------------------------------------------------- " << endl;
-	cout << generate_text(s, 200, 0) << endl << endl;
-	cout << "Generating first text : Markov model of order 1 : " << endl;
-	cout << "------------------------------------------------- " << endl;
-	cout << generate_text(s, 200, 1) << endl << endl;
-	cout << "Generating first text : Markov model of order 2 : " << endl;
-	cout << "------------------------------------------------- " << endl;
-	cout << generate_text(s, 200, 2) << endl << endl;
-	cout << "Generating first text : Markov model of order 3 : " << endl;
-	cout << "------------------------------------------------- " << endl;
-	cout << generate_text(s, 200, 3) << endl << endl;
+	wcout << "Generating first text : Markov model of order 0 : " << endl;
+	wcout << "------------------------------------------------- " << endl;
+	wcout << generate_text(s, 200, 0) << endl << endl;
+	wcout << "Generating first text : Markov model of order 1 : " << endl;
+	wcout << "------------------------------------------------- " << endl;
+	wcout << generate_text(s, 200, 1) << endl << endl;
+	wcout << "Generating first text : Markov model of order 2 : " << endl;
+	wcout << "------------------------------------------------- " << endl;
+	wcout << generate_text(s, 200, 2) << endl << endl;
+	wcout << "Generating first text : Markov model of order 3 : " << endl;
+	wcout << "------------------------------------------------- " << endl;
+	wcout << generate_text(s, 200, 3) << endl << endl;
 
+	wcout << "Closing store" << endl;
+	s.close(L"store_tree.txt");
 }

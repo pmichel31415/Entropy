@@ -1,25 +1,11 @@
 #include "construct.h"
 
-// Split string in array with delimiter
-
-queue<string> split(string str, char delimiter) {
-	queue<string> internal;
-	stringstream ss(str); // Turn the string into a stream.
-	string tok;
-
-	while (getline(ss, tok, delimiter)) {
-		internal.push(tok);
-	}
-
-	return internal;
-}
-
 // Split string in queue of chars (strings)
 
-queue<string> split_chars(string str) {
-	queue<string> internal;
+queue<wstring> split_chars(wstring str) {
+	queue<wstring> internal;
 	for (int i = 0; i < str.size(); i++){
-		internal.push(str.substr(i,1));
+		internal.push(str.substr(i, 1));
 	}
 
 	return internal;
@@ -27,7 +13,7 @@ queue<string> split_chars(string str) {
 
 // Get [length] chars up to [index] in [txt] and return a string queue
 
-queue<string> get_char_seq(string txt, int index, int length){
+queue<wstring> get_char_seq(wstring txt, int index, int length){
 	if (index < length){
 		return split_chars(txt.substr(0, index));
 	}
@@ -38,9 +24,9 @@ queue<string> get_char_seq(string txt, int index, int length){
 
 // Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
 
-void assimilate_text(string txt, Store &s, int order){
-	string chars;
-	queue<string> seq;
+void assimilate_text(wstring txt, Store &s, int order){
+	wstring chars;
+	queue<wstring> seq;
 	for (int i = 1; i <= txt.length(); i++){
 		seq = get_char_seq(txt, i, order);
 		s.add_hits(seq, 1);
@@ -75,36 +61,36 @@ void to_upper_c(char& c){
 
 // Normalizes blanks to space
 
-void blank_to_space(char& c){
+void blank_to_space(wchar_t& c){
 	if ((c == 9) || (c == 10) || (c == 13) || (c == 32)){
 		c = 95;
 	}
-	
+
 }
 
 // Returns array of simplified strings from text file
 
-vector<string> read_text(string filename){
-	vector<string> ret;
-	string buff_s = "";
-	char buff;
-	ifstream ifs;
+vector<wstring> read_text(wstring filename){
+	vector<wstring> ret;
+	wstring buff_s = L"";
+	wchar_t buff;
+	wifstream ifs;
 	ifs.open(filename);
 
 	if (!ifs.is_open() || !ifs.good()){
-		cerr << "ERROR : couldn't load file " << filename << endl;
+		wcerr << "ERROR : couldn't load file " << filename << endl;
 	}
 	else{
 		while (ifs.get(buff)){
-			if (is_acceptable(buff)){
-				to_upper_c(buff);
-				blank_to_space(buff);
-				buff_s.push_back(buff);
-				if (is_point(buff)){
-					ret.push_back(buff_s);
-					buff_s = "";
-				}
+			//if (is_acceptable(buff)){
+			//to_upper_c(buff);
+			blank_to_space(buff);
+			buff_s.push_back(buff);
+			if (is_point(buff)){
+				ret.push_back(buff_s);
+				buff_s = L"";
 			}
+			//}
 		}
 	}
 
