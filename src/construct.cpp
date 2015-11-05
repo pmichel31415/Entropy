@@ -65,12 +65,12 @@ void blank_to_space(wchar_t& c){
 	if ((c == 9) || (c == 10) || (c == 13) || (c == 32)){
 		c = 95;
 	}
-	
+
 
 }
 
 bool check_blank(wstring str, wchar_t c){
-	return str[str.size()] != 95 || c != 95;
+	return str.size() == 0 || str[str.size() - 1] != 95 || c != 95;
 }
 
 // Returns array of simplified strings from text file
@@ -85,10 +85,12 @@ wstring read_text(wstring filename){
 		wcerr << "ERROR : couldn't load file " << filename << endl;
 	}
 	else{
-		while (ifs.get(buff)){
+		while (ifs >> noskipws >> buff){
 			blank_to_space(buff);
-			if (check_blank(buff_s,buff))
-			buff_s.push_back(buff);
+
+			
+			if (check_blank(buff_s, buff))
+				buff_s.push_back(buff);
 		}
 	}
 
