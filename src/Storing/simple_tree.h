@@ -36,6 +36,8 @@ public:
 
 	wstring get_rand(queue<wstring> prev);
 
+	double entropy(int order);
+
 
 private:
 	

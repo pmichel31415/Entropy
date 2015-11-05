@@ -35,7 +35,6 @@ void Simple_tree::read_from_file(wistream* ifs){
 		sons[i]->hd = buff_word;
 		(*ifs) >> buff_f;
 		sons[i]->freq = buff_f;
-
 		sons[i]->read_from_file(ifs);
 	}
 }
@@ -133,12 +132,34 @@ wstring Simple_tree::get_rand(queue<wstring> prev){
 
 	wstring str = prev.front();
 	prev.pop();
-	
+
 	for (int i = 0; i < sons.size(); i++){
+
 		if (sons[i]->hd == str) return sons[i]->get_rand(prev);
 	}
 
 
 	return L"";
+}
+
+double Simple_tree::entropy(int order){
+	double ret = 0.0;
+	double p;
+	if (order == 0){
+		
+		for (Simple_tree* s : sons){
+			p = ((double)(s->freq)) / ((double)sons_tot);
+			ret += p * (log(p) / log(2.0));
+		}
+		return (-ret);
+	}
+	else{
+		for (Simple_tree* s : sons){
+			p = ((double)(s->freq)) / ((double)sons_tot);
+			ret += p * s->entropy(order - 1);
+		}
+		
+		return ret;
+	}
 }
 

@@ -35,6 +35,9 @@ public:
 	// Generate next word/char in a serie randomly
 	virtual wstring next(queue<wstring> seq);
 
+	// Calculate entropy
+	virtual double entropy(int order);
+
 
 private:
 

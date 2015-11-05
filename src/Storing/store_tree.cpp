@@ -73,3 +73,7 @@ double Store_tree::get_proba(queue<wstring> seq){
 wstring Store_tree::next(queue<wstring> seq){
 	return hits->get_rand(seq);
 }
+
+double Store_tree::entropy(int order){
+	return hits->entropy(order);
+}
