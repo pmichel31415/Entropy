@@ -22,8 +22,6 @@ int main(int argc, const char* argv[]){
 	}
 	else{
 		Store_tree s;
-		cerr << argv[1] << endl;
-		cerr << argc << endl;
 		if (strcmp(argv[1], "assimilate") == 0 && argc >= 4){
 			if (argc >= 5){
 				assim(s, wstr_from_char_arr(argv[2]), wstr_from_char_arr(argv[3]), atoi(argv[4]));
@@ -41,6 +39,14 @@ int main(int argc, const char* argv[]){
 			}
 			else{
 				gen(s, wstr_from_char_arr(argv[2]), wstr_from_char_arr(argv[3]), 100, 1);
+			}
+		}
+		else if (strcmp(argv[1], "calculate") == 0 && argc >= 3){
+			if (argc >= 4){
+				calc(s, wstr_from_char_arr(argv[2]), atoi(argv[3]));
+			}
+			else{
+				calc(s, wstr_from_char_arr(argv[2]), 0);
 			}
 		}
 		else{
