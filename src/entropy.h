@@ -6,11 +6,11 @@
 #include "gen.h"
 #include <algorithm>
 
-void assim(Store& s, wstring store_fname, wstring text_fname, int order);
+void assim(Store& s, char* store_fname, char* text_fname, int order);
 
-void gen(Store& s, wstring store_fname, wstring output_fname, int length, int order);
+void gen(Store& s, char* store_fname, char* output_fname, int length, int order);
 
-void calc(Store& s, wstring store_fname, int order);
+void calc(Store& s, char* store_fname, int order);
 
 
 #endif // !ENTROPY_H

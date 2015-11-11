@@ -3,6 +3,7 @@
 
 #include "Storing/store.h"
 #include <iostream>
+#include <algorithm>
 
 void add_next_char(wstring& text, Store& s, int order);
 

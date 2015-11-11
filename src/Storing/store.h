@@ -14,8 +14,8 @@ public:
 	~Store();
 
 	// Open and close store
-	virtual void open(wstring filename);
-	virtual void close(wstring filename);
+	virtual void open(char* filename);
+	virtual void close(char* filename);
 
 	// Check if store is initialized (e.g. table was created, etc.) and initializes it
 	virtual bool is_init();

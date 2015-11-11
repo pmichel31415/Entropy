@@ -1,6 +1,6 @@
 #include "entropy.h"
 
-void assim(Store& s, wstring store_fname, wstring text_fname, int order){
+void assim(Store& s, char* store_fname, char* text_fname, int order){
 	s.open(store_fname);
 	order++;
 	if (!s.is_init()){
@@ -16,7 +16,7 @@ void assim(Store& s, wstring store_fname, wstring text_fname, int order){
 
 }
 
-void gen(Store& s, wstring store_fname, wstring output_fname, int length, int order){
+void gen(Store& s, char* store_fname, char* output_fname, int length, int order){
 	wofstream wofs;
 	wofs.open(output_fname);
 	s.open(store_fname);
@@ -34,14 +34,14 @@ void gen(Store& s, wstring store_fname, wstring output_fname, int length, int or
 	wofs.close();
 }
 
-void calc(Store& s, wstring store_fname, int order){
+void calc(Store& s, char* store_fname, int order){
 	s.open(store_fname);
 	if (!s.is_init()){
 		wcerr << "Store is not initialized, initializing..." << endl;
 		s.init();
 		wcerr << "Store initialized!" << endl;
 	}
-	
+
 	double H = s.entropy(order);
 
 	wcout << H << endl;

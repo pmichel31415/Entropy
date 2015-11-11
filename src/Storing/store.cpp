@@ -3,8 +3,8 @@
 Store::Store(){}
 Store::~Store(){}
 
-void Store::open(wstring filename){}
-void Store::close(wstring filename){}
+void Store::open(char* filename){}
+void Store::close(char* filename){}
 
 bool Store::is_init(){ return false; }
 void Store::init(){}

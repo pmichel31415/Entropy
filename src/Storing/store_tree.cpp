@@ -12,7 +12,7 @@ Store_tree::~Store_tree(){
 }
 
 // Open and close store
-void Store_tree::open(wstring filename){
+void Store_tree::open(char* filename){
 	wifstream ifs;
 	ifs.open(filename);
 
@@ -26,7 +26,7 @@ void Store_tree::open(wstring filename){
 	ifs.close();
 }
 
-void Store_tree::close(wstring filename){
+void Store_tree::close(char* filename){
 	wofstream ofs;
 	ofs.open(filename);
 	if (!ofs.is_open() || !ofs.good()){

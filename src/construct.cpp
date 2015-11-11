@@ -61,7 +61,7 @@ void to_upper_c(char& c){
 
 // Normalizes blanks to space
 
-void blank_to_space(wchar_t& c){
+void blank_to_space(char& c){
 	if ((c == 9) || (c == 10) || (c == 13) || (c == 32)){
 		c = 95;
 	}
@@ -69,31 +69,33 @@ void blank_to_space(wchar_t& c){
 
 }
 
-bool check_blank(wstring str, wchar_t c){
+bool check_blank(string str, char c){
 	return str.size() == 0 || str[str.size() - 1] != 95 || c != 95;
 }
 
 // Returns array of simplified strings from text file
 
-wstring read_text(wstring filename){
-	wstring buff_s = L"";
-	wchar_t buff;
-	wifstream ifs;
+wstring read_text(char* filename){
+	string buff_s = "";
+	char buff;
+	ifstream ifs;
 	ifs.open(filename);
 
 	if (!ifs.is_open() || !ifs.good()){
 		wcerr << "ERROR : couldn't load file " << filename << endl;
 	}
 	else{
-		while (ifs >> noskipws >> buff){
+		while (ifs.get(buff)){
 			blank_to_space(buff);
+            wcout<<buff<<endl;
 
-			
+
 			if (check_blank(buff_s, buff))
+
 				buff_s.push_back(buff);
 		}
 	}
 
 	ifs.close();
-	return buff_s;
+	return "";
 }

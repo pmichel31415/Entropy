@@ -49,7 +49,7 @@ void test_tree(){
 	Store_tree s;
 	wcout << "Beginning test" << endl;
 	wcout << "--------------" << endl;
-	s.open(L"store_tree.txt");
+	s.open("store_tree.txt");
 	if (!s.is_init()){
 		wcerr << "Store is not initialized, initializing..." << endl;
 		s.init();
@@ -77,7 +77,7 @@ void test_tree(){
 	}
 
 	wcout << "Closing store" << endl;
-	s.close(L"store_tree.txt");
+	s.close("store_tree.txt");
 }
 
 void test_construct(){
@@ -85,7 +85,7 @@ void test_construct(){
 	wcout << "Beginning test" << endl;
 	wcout << "--------------" << endl;
 	wcout << "Opening store_tree.txt : " << endl;
-	s.open(L"store_tree.txt");
+	s.open("store_tree.txt");
 	wcout << "Opened " << endl;
 	if (!s.is_init()){
 		wcerr << "Store is not initialized, initializing..." << endl;
@@ -93,7 +93,7 @@ void test_construct(){
 		wcerr << "Store initialized!" << endl;
 	}
 
-	wstring txt = read_text(L"trois_mousquetaires.txt");
+	wstring txt = read_text("trois_mousquetaires.txt");
 	wcout << "Assimilating : " << endl;
 	wcout << txt << endl << endl;
 	assimilate_text(txt, s, 4);
@@ -101,7 +101,7 @@ void test_construct(){
 
 
 	wcout << "Closing store" << endl;
-	s.close(L"store_tree.txt");
+	s.close("store_tree.txt");
 }
 
 void test_gen(){
@@ -112,7 +112,7 @@ void test_gen(){
 	wcout << "Beginning test" << endl;
 	wcout << "--------------" << endl;
 	wcout << "Opening store_tree.txt : " << endl;
-	s.open(L"store_tree.txt");
+	s.open("store_tree.txt");
 	wcout << "Opened " << endl;
 	if (!s.is_init()){
 		wcerr << "Store is not initialized, initializing..." << endl;
@@ -133,5 +133,5 @@ void test_gen(){
 	wcout << generate_text(s, 200, 3) << endl << endl;
 
 	wcout << "Closing store" << endl;
-	s.close(L"store_tree.txt");
+	s.close("store_tree.txt");
 }
