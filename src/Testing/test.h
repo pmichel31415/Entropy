@@ -8,11 +8,11 @@
 #include <sstream>
 #include <time.h>
 
-void print(queue<wstring> q);
+void print(queue<string> q);
 
-queue<wstring> split(wstring str, char delimiter);
+queue<string> split(string str, char delimiter);
 
-void incr(queue<wstring> test_q, Store& s);
+void incr(queue<string> test_q, Store& s);
 
 void test_tree();
 void test_construct();

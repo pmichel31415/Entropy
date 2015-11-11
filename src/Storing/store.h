@@ -22,18 +22,18 @@ public:
 	virtual void init();
 
 	// Check if word exists and insert it
-	virtual bool exists(queue<wstring> seq);
-	virtual void create(queue<wstring> seq, int nb);
+	virtual bool exists(queue<string> seq);
+	virtual void create(queue<string> seq, int nb);
 
 	// Access or modify hits
-	virtual int get_hits(queue<wstring> seq);
-	virtual void add_hits(queue<wstring> seq, int nb);
+	virtual int get_hits(queue<string> seq);
+	virtual void add_hits(queue<string> seq, int nb);
 
 	// Access proba
-	virtual double get_proba(queue<wstring> seq);
+	virtual double get_proba(queue<string> seq);
 
 	// Generate next word/char in a serie randomly
-	virtual wstring next(queue<wstring> seq);
+	virtual string next(queue<string> seq);
 
 	// Calculate entropy
 	virtual double entropy(int order);

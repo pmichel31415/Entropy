@@ -12,36 +12,36 @@ class Simple_tree
 {
 public:
 
-	wstring hd;
+	string hd;
 	vector<Simple_tree*> sons;
 	int freq;
 	int sons_tot;
 
 	Simple_tree();
-	Simple_tree(wstring str, int f);
+	Simple_tree(string str, int f);
 
 	~Simple_tree();
 
-	void read_from_file(wistream* ifs);
+	void read_from_file(istream* ifs);
 
-	void write_to_file(wostream* ofs);
+	void write_to_file(ostream* ofs);
 
-	void add(queue<wstring> seq, int f);
+	void add(queue<string> seq, int f);
 
-	bool is_in(queue<wstring> seq);
+	bool is_in(queue<string> seq);
 
-	int get(queue<wstring> seq);
+	int get(queue<string> seq);
 
-	double get_p(queue<wstring> seq);
+	double get_p(queue<string> seq);
 
-	wstring get_rand(queue<wstring> prev);
+	string get_rand(queue<string> prev);
 
 	double entropy(int order);
 
 
 private:
-	
-	
-	
+
+
+
 };
 #endif // !SIMPLE_TREE_H
