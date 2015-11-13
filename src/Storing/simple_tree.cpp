@@ -48,6 +48,28 @@ void Simple_tree::write_to_file(ostream* ofs){
 	}
 }
 
+void print_rec(ostream* ofs, Simple_tree* t, string prefix){
+	(*ofs) << prefix << "-(" << t->hd << " " << t->freq << ")" << endl;
+	prefix.append(" |");
+	for (int i = 0; i<(t->sons).size(); i++){
+		if (i == (t->sons).size() - 1)
+			prefix[prefix.length() - 1] = ' ';
+
+		print_rec(ofs, t->sons[i], prefix);
+	}
+}
+
+void Simple_tree::print(ostream* ofs){
+	(*ofs) << "(" << hd << " " << freq << ")" << endl;
+	string prefix = "|";
+	for (int i = 0; i<(sons).size(); i++){
+		if (i == (sons).size() - 1)
+			prefix = " ";
+
+		print_rec(ofs, sons[i], prefix);
+	}
+}
+
 void Simple_tree::add(queue<string> seq, int f){
 	bool exists = false;
 	int i = 0;

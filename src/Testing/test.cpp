@@ -36,25 +36,27 @@ void test_tree(){
 		cerr << "Store initialized!" << endl;
 	}
 
-	vector<string> test_queues_1 = {
-		"a:b:c",
-		"a:b:c",
-		"a:b:a",
-		"a:c:c",
-		"a:b:d"
-	};
-	vector<string> test_queues_2 = {
-		"a",
-		"a:b",
-		"a:b:c",
-		"b:c:c",
-		"b:b:d",
-		"b:b"
-	};
+	//vector<string> test_queues_1 = {
+	//	"abc",
+	//	"abc",
+	//	"aba",
+	//	"acc",
+	//	"abd"
+	//};
+	//vector<string> test_queues_2 = {
+	//	"a",
+	//	"ab",
+	//	"abc",
+	//	"bcc",
+	//	"bbd",
+	//	"bb"
+	//};
 
-	for (int i = 0; i < test_queues_2.size(); i++){
-		incr(split(test_queues_2[i], ':'), s);
-	}
+	s.print_tree();
+
+	//for (int i = 0; i < test_queues_2.size(); i++){
+	//	incr(split_chars(test_queues_2[i]), s);
+	//}
 
 	cout << "Closing store" << endl;
 	s.close("store_tree.txt");
@@ -76,7 +78,7 @@ void test_construct(){
 	string txt = read_text("trois_mousquetaires.txt");
 	cout << "Assimilating : " << endl;
 	cout << txt << endl << endl;
-	assimilate_text(txt, s, 4);
+	assimilate_text(txt, s, 4,&split_chars);
 
 
 

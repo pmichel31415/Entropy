@@ -36,6 +36,8 @@ public:
 	// Calculate entropy
 	virtual double entropy(int order);
 
+	// For debug
+	void print_tree();
 
 private:
 	Simple_tree* hits;

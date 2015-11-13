@@ -26,6 +26,8 @@ public:
 
 	void write_to_file(ostream* ofs);
 
+	void print(ostream* ofs);
+
 	void add(queue<string> seq, int f);
 
 	bool is_in(queue<string> seq);

@@ -77,3 +77,7 @@ string Store_tree::next(queue<string> seq){
 double Store_tree::entropy(int order){
 	return hits->entropy(order);
 }
+
+void Store_tree::print_tree(){
+	hits->print(&cout);
+}
