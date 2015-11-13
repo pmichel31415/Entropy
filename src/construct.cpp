@@ -2,13 +2,14 @@
 
 // Split string in array with delimiter
 
-queue<string> split(string str, char delimiter) {
-	queue<string> internal;
+vector<string> split(string str) {
+	vector<string> internal;
 	stringstream ss(str); // Turn the string into a stream.
 	string tok;
 
-	while (getline(ss, tok, delimiter)) {
-		internal.push(tok);
+	while (getline(ss, tok, '_')) {
+		tok.push_back('_');
+		internal.push_back(tok);
 	}
 
 	return internal;
@@ -16,35 +17,46 @@ queue<string> split(string str, char delimiter) {
 
 // Split string in queue of chars (strings)
 
-queue<string> split_chars(string str) {
-	queue<string> internal;
+vector<string> split_chars(string str) {
+	vector<string> internal(str.length());
 	for (int i = 0; i < str.size(); i++){
-		internal.push(str.substr(i,1));
+		internal[i] = str.substr(i, 1);
 	}
 
 	return internal;
 }
 
-// Get [length] chars up to [index] in [txt] and return a string queue
+// Get [length] words/chars up to [index] in [txt] and return a string queue
 
-queue<string> get_char_seq(string txt, int index, int length){
+queue<string> get_seq(vector<string> tab, int index, int length){
+	queue<string> seq;
+	int beg, end = index;
 	if (index < length){
-		return split_chars(txt.substr(0, index));
+		beg = 0;
 	}
 	else{
-		return split_chars(txt.substr(index - length, length));
+		beg = index - length;
 	}
+
+	for (int i = beg; i <= end; i++){
+		seq.push(tab[i]);
+	}
+
+	return seq;
 }
+
 
 // Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
 
-void assimilate_text(string txt, Store &s, int order){
+void assimilate_text(string txt, Store &s, int order, vector<string>(*text_splitter)(string)){
 	string chars;
 	queue<string> seq;
-	for (int i = 1; i <= txt.length(); i++){
-		seq = get_char_seq(txt, i, order);
+	vector<string> tab = text_splitter(txt);
+	for (int i = 0; i < tab.size(); i++){
+		seq = get_seq(tab, i, order);
 		s.add_hits(seq, 1);
 	}
+	cerr << "ok" << endl;
 }
 
 // Checks if char is either blank (tab/space/rc/eol), a point, an apostrophy or a lower/upper case letter
@@ -97,7 +109,7 @@ string read_text(char* filename){
 		cerr << "ERROR : couldn't load file " << filename << endl;
 	}
 	else{
-		while (ifs>>noskipws>>buff){
+		while (ifs >> noskipws >> buff){
 			blank_to_space(buff);
 			if (check_blank(buff_s, buff))
 				buff_s.push_back(buff);

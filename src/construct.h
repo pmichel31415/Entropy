@@ -9,13 +9,17 @@
 
 using namespace std;
 
-// Get [length] chars up to [index] in [txt] and return a string queue
+// Splits text in array of words
 
-queue<string> get_char_seq(string txt, int index, int length);
+vector<string> split(string txt);
 
-// Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
+// Splits text in vector of chars 
 
-void assimilate_text(string txt, Store &s, int order);
+vector<string> split_chars(string txt);
+
+// Stores number of	conditional appearences of sequence (of length [order]) of chars/words in [txt] into [s]
+
+void assimilate_text(string txt, Store &s, int order, vector<string>(*text_splitter)(string));
 
 // Returns array of simplified strings from text file
 

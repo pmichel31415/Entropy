@@ -25,29 +25,29 @@ int main(int argc, const char* argv[]){
 		Store_tree s;
 		if (strcmp(argv[1], "assimilate") == 0 && argc >= 4){
 			if (argc >= 5){
-				assim(s, argv[2], argv[3], atoi(argv[4]));
+				assim(s, (char*)argv[2], (char*)argv[3], atoi(argv[4]));
 			}
 			else{
-				assim(s, argv[2], argv[3], 1);
+				assim(s, (char*)argv[2], (char*)argv[3], 1);
 			}
 		}
 		else if (strcmp(argv[1], "generate") == 0 && argc >= 4){
 			if (argc >= 6){
-				gen(s, argv[2], argv[3], atoi(argv[4]), atoi(argv[5]));
+				gen(s, (char*)argv[2], (char*)argv[3], atoi(argv[4]), atoi(argv[5]));
 			}
 			else if (argc == 5){
-				gen(s, (argv[2]), (argv[3]), atoi(argv[4]), 1);
+				gen(s, (char*)argv[2], (char*)argv[3], atoi(argv[4]), 1);
 			}
 			else{
-				gen(s, (argv[2]), (argv[3]), 100, 1);
+				gen(s, (char*)argv[2], (char*)argv[3], 100, 1);
 			}
 		}
 		else if (strcmp(argv[1], "calculate") == 0 && argc >= 3){
 			if (argc >= 4){
-				calc(s, (argv[2]), atoi(argv[3]));
+				calc(s, (char*)argv[2], atoi(argv[3]));
 			}
 			else{
-				calc(s, (argv[2]), 0);
+				calc(s, (char*)argv[2], 0);
 			}
 		}
 		else{
