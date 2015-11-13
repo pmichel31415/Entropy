@@ -31,7 +31,6 @@ void gen(Store& s, char* store_fname, char* output_fname, int length, int order)
 	string txt = generate_text(s, length, order);
 	replace(txt.begin(), txt.end(), '_', ' ');
 	ofs << txt;
-	s.close(store_fname);
 	ofs.close();
 }
 
@@ -47,5 +46,4 @@ void calc(Store& s, char* store_fname, int order){
 
 	wcout << H << endl;
 
-	s.close(store_fname);
 }
