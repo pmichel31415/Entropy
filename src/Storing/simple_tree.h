@@ -24,7 +24,7 @@ public:
 
 	void read_from_file(istream* ifs);
 
-	void write_to_file(ostream* ofs);
+	void write_to_file(FILE* f);
 
 	void print(ostream* ofs);
 

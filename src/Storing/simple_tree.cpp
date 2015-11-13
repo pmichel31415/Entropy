@@ -39,12 +39,11 @@ void Simple_tree::read_from_file(istream* ifs){
 	}
 }
 
-void Simple_tree::write_to_file(ostream* ofs){
-	(*ofs) << sons_tot << endl;
-	(*ofs) << sons.size() << endl;
+void Simple_tree::write_to_file(FILE* f){
+	fprintf(f, "%d\n%d\n", sons_tot, sons.size());
 	for (Simple_tree* s : sons){
-		(*ofs) << s->hd << " " << s->freq << endl;
-		s->write_to_file(ofs);
+		fprintf(f, "%s %d\n", s->hd, s->freq);
+		s->write_to_file(f);
 	}
 }
 

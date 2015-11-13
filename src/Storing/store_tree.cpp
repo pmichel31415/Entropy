@@ -27,15 +27,14 @@ void Store_tree::open(char* filename){
 }
 
 void Store_tree::close(char* filename){
-	ofstream ofs;
-	ofs.open(filename);
-	if (!ofs.is_open() || !ofs.good()){
+	FILE* f = fopen(filename, "w");
+	if (f == 0){
 		cerr << "ERROR : couldn't open file " << filename << endl;
 	}
 	else{
-		hits->write_to_file(&ofs);
+		hits->write_to_file(f);
 	}
-	ofs.close();
+	fclose(f);
 }
 
 // Check if store is initialized (e.g. table was created, etc.) and initializes it
