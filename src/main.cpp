@@ -16,6 +16,8 @@ wstring wstr_from_char_arr(const char* str){
 }
 
 int main(int argc, const char* argv[]){
+	
+	srand(time(0));
 
 	if (argc < 2){
 		cerr << "No command given" << endl;
