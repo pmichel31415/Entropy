@@ -42,7 +42,7 @@ void Simple_tree::read_from_file(istream* ifs){
 void Simple_tree::write_to_file(FILE* f){
 	fprintf(f, "%d\n%d\n", sons_tot, sons.size());
 	for (Simple_tree* s : sons){
-		fprintf(f, "%s %d\n", s->hd, s->freq);
+		fprintf(f, "%s %d\n", s->hd.c_str(), s->freq);
 		s->write_to_file(f);
 	}
 }

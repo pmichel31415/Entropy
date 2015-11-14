@@ -6,7 +6,7 @@
 
 using namespace std;
 
-const string usage = "Usage:\n\n  - assimilate [store file name] [text file name] ([order])\n\n  - generate [store file name] ([length] [order])\n";
+const string usage = "Usage:\n\n  - assimilate [store file name] [text file name] ([order])\n\n  - generate [store file name] [output file name] ([length] [order])\n\n  - calculate [store file name] ([order])\n";
 
 wstring wstr_from_char_arr(const char* str){
 	wstring wstr;

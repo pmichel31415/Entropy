@@ -109,7 +109,7 @@ string read_text(char* filename){
 		cerr << "ERROR : couldn't load file " << filename << endl;
 	}
 	else{
-		while (ifs >> noskipws >> buff){
+		while (ifs.get(buff)){
 			blank_to_space(buff);
 			if (check_blank(buff_s, buff))
 				buff_s.push_back(buff);
