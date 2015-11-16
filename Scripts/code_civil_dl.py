@@ -5,7 +5,7 @@ import os
 # Clone from github
 os.system('git clone https://github.com/steeve/france.code-civil.git')
 
-base = "france.code-civil-master"
+base = "france.code-civil"
 
 
 # Search recursively through each sub-directory and remove two first lines from each md/txt file
