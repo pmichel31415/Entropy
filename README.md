@@ -23,3 +23,21 @@ equals
 ![equation 2](https://latex.codecogs.com/svg.latex?%5Cinline%20%5Cdpi%7B200%7D%20P%28X_n%3Dx%7CY_%7Bn-1%7D%3Dy_%7Bn-1%7D%2C...%2CY_%7Bn-k%7D%3Dy_%7Bn-k%7D%29) 
 for all n. More precisely, it equals ![equation 2](https://latex.codecogs.com/svg.latex?%5Cdpi%7B200%7D%20p%28x%2Cy_%7Bn-1%7D%2C...%2Cy_%7Bn-k%7D%29)
 with p being a function independent from n (the markov chain is supposed stationnary).
+
+
+### Python scripts
+
+I added a few python scripts to show how the code can be used to calulate the entropy of, say, french.
+
+* First you should download the raw material using :
+
+   $ python Scripts/french_texts_dl.py
+   $ python Scripts/code_civil_dl.py
+   
+(You may want to launch the second script in the Text folder created by the first one to regroup all files)
+
+* Then launch the program on all files (don't forget to adjust the markov order in the python file)
+   
+   $ python Scripts/assimilate_folder.py
+
+Of course you can change any parameter you want in the python files ;)
