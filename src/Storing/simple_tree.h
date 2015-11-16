@@ -14,11 +14,11 @@ public:
 
 	string hd;
 	vector<Simple_tree*> sons;
-	int freq;
-	int sons_tot;
+	long long int freq;
+	long long int  sons_tot;
 
 	Simple_tree();
-	Simple_tree(string str, int f);
+	Simple_tree(string str, long long int  f);
 
 	~Simple_tree();
 
@@ -28,11 +28,11 @@ public:
 
 	void print(ostream* ofs);
 
-	void add(queue<string> seq, int f);
+	void add(queue<string> seq, long long int f);
 
 	bool is_in(queue<string> seq);
 
-	int get(queue<string> seq);
+	long long int get(queue<string> seq);
 
 	double get_p(queue<string> seq);
 

@@ -7,28 +7,28 @@ Simple_tree::Simple_tree(){
 
 }
 
-Simple_tree::Simple_tree(string str, int f)
+Simple_tree::Simple_tree(string str, long long int  f)
 	:hd(str),
 	freq(f),
 	sons_tot(0)
 {}
 
 Simple_tree::~Simple_tree(){
-	int n = sons.size();
-	for (int i = 0; i < n; i++){
+	long long int n = sons.size();
+	for (long long int i = 0; i < n; i++){
 		delete sons[i];
 	}
 }
 
 void Simple_tree::read_from_file(istream* ifs){
 	string buff_word;
-	int buff_f, n;
+	long long int buff_f, n;
 
 	(*ifs) >> buff_f;
 	sons_tot = buff_f;
 
 	(*ifs) >> n;
-	for (int i = 0; i < n; i++){
+	for (long long int i = 0; i < n; i++){
 		sons.push_back(new Simple_tree());
 		// Fill son informations
 		(*ifs) >> buff_word;
@@ -40,9 +40,9 @@ void Simple_tree::read_from_file(istream* ifs){
 }
 
 void Simple_tree::write_to_file(FILE* f){
-	fprintf(f, "%d\n%d\n", sons_tot, sons.size());
+	fprintf(f, "%lld\n%lld\n", sons_tot, sons.size());
 	for (Simple_tree* s : sons){
-		fprintf(f, "%s %d\n", s->hd.c_str(), s->freq);
+		fprintf(f, "%s %lld\n", s->hd.c_str(), s->freq);
 		s->write_to_file(f);
 	}
 }
@@ -50,7 +50,7 @@ void Simple_tree::write_to_file(FILE* f){
 void print_rec(ostream* ofs, Simple_tree* t, string prefix){
 	(*ofs) << prefix << "-(" << t->hd << " " << t->freq << ")" << endl;
 	prefix.append(" |");
-	for (int i = 0; i<(t->sons).size(); i++){
+	for (long long int i = 0; i<(t->sons).size(); i++){
 		if (i == (t->sons).size() - 1)
 			prefix[prefix.length() - 1] = ' ';
 
@@ -61,7 +61,7 @@ void print_rec(ostream* ofs, Simple_tree* t, string prefix){
 void Simple_tree::print(ostream* ofs){
 	(*ofs) << "(" << hd << " " << freq << ")" << endl;
 	string prefix = "|";
-	for (int i = 0; i<(sons).size(); i++){
+	for (long long int i = 0; i<(sons).size(); i++){
 		if (i == (sons).size() - 1)
 			prefix = " ";
 
@@ -69,9 +69,9 @@ void Simple_tree::print(ostream* ofs){
 	}
 }
 
-void Simple_tree::add(queue<string> seq, int f){
+void Simple_tree::add(queue<string> seq, long long int f){
 	bool exists = false;
-	int i = 0;
+	long long int i = 0;
 	string w = seq.front();
 	while (!exists && i < sons.size()){
 		exists = (sons[i]->hd == w) || exists;
@@ -106,7 +106,7 @@ bool Simple_tree::is_in(queue<string> seq){
 
 }
 
-int Simple_tree::get(queue<string> seq){
+long long int Simple_tree::get(queue<string> seq){
 	for (Simple_tree* s : sons){
 		if (s->hd == seq.front()){
 			seq.pop();
@@ -141,8 +141,8 @@ string Simple_tree::get_rand(queue<string> prev){
 
 	if (prev.empty()){
 		if (sons.size() == 0) return "";
-		int r = (rand() / (double)RAND_MAX)*((double)sons_tot);
-		int h = 0, i = 0;
+		long long int r = (rand() / (double)RAND_MAX)*((double)sons_tot);
+		long long int h = 0, i = 0;
 		while (r >= h && i < sons.size()){
 			h += sons[i]->freq;
 			i++;
@@ -154,7 +154,7 @@ string Simple_tree::get_rand(queue<string> prev){
 	string str = prev.front();
 	prev.pop();
 
-	for (int i = 0; i < sons.size(); i++){
+	for (long long int i = 0; i < sons.size(); i++){
 
 		if (sons[i]->hd == str) return sons[i]->get_rand(prev);
 	}

@@ -23,11 +23,11 @@ public:
 
 	// Check if word exists and insert it
 	virtual bool exists(queue<string> seq);
-	virtual void create(queue<string> seq, int nb);
+	virtual void create(queue<string> seq, long long int nb);
 
 	// Access or modify hits
-	virtual int get_hits(queue<string> seq);
-	virtual void add_hits(queue<string> seq, int nb);
+	virtual long long int get_hits(queue<string> seq);
+	virtual void add_hits(queue<string> seq, long long int nb);
 
 	// Access proba
 	virtual double get_proba(queue<string> seq);
