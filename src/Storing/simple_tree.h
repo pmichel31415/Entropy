@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include <random>
+#include "../def.h"
 
 using namespace std;
 
@@ -14,11 +15,11 @@ public:
 
 	string hd;
 	vector<Simple_tree*> sons;
-	long long int freq;
-	long long int  sons_tot;
+	llu freq;
+	llu  sons_tot;
 
 	Simple_tree();
-	Simple_tree(string str, long long int  f);
+	Simple_tree(string str, llu  f);
 
 	~Simple_tree();
 
@@ -28,11 +29,11 @@ public:
 
 	void print(ostream* ofs);
 
-	void add(queue<string> seq, long long int f);
+	void add(queue<string> seq, llu f);
 
 	bool is_in(queue<string> seq);
 
-	long long int get(queue<string> seq);
+	llu get(queue<string> seq);
 
 	double get_p(queue<string> seq);
 

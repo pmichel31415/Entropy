@@ -3,7 +3,8 @@
 
 #include <string>
 #include <queue>
-#pragma once
+#include "../def.h"
+
 using namespace std;
 
 
@@ -23,11 +24,11 @@ public:
 
 	// Check if word exists and insert it
 	virtual bool exists(queue<string> seq);
-	virtual void create(queue<string> seq, long long int nb);
+	virtual void create(queue<string> seq, llu nb);
 
 	// Access or modify hits
-	virtual long long int get_hits(queue<string> seq);
-	virtual void add_hits(queue<string> seq, long long int nb);
+	virtual llu get_hits(queue<string> seq);
+	virtual void add_hits(queue<string> seq, llu nb);
 
 	// Access proba
 	virtual double get_proba(queue<string> seq);

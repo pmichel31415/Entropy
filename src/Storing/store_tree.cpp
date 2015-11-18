@@ -51,15 +51,15 @@ bool Store_tree::exists(queue<string> seq){
 	return hits->is_in(seq);
 }
 
-void Store_tree::create(queue<string> seq, long long int  nb){
+void Store_tree::create(queue<string> seq, llu nb){
 	hits->add(seq, nb);
 }
 
 // Access or modify hits
-long long int  Store_tree::get_hits(queue<string> seq){
+llu Store_tree::get_hits(queue<string> seq){
 	return hits->get(seq);
 }
-void Store_tree::add_hits(queue<string> seq, long long int  nb){
+void Store_tree::add_hits(queue<string> seq, llu nb){
 	hits->add(seq, nb);
 
 }

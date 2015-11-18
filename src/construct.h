@@ -9,17 +9,13 @@
 
 using namespace std;
 
-// Splits text in array of words
+// Stores number of	conditional appearences of sequence (of length [order]) of words in [txt] into [s]
 
-vector<string> split(string txt);
+void assimilate_text(string txt, Store &s, int order);
 
-// Splits text in vector of chars 
+// Stores number of	conditional appearences of sequence (of length [order]) of words in [txt] into [s]
 
-vector<string> split_chars(string txt);
-
-// Stores number of	conditional appearences of sequence (of length [order]) of chars/words in [txt] into [s]
-
-void assimilate_text(string txt, Store &s, int order, vector<string>(*text_splitter)(string));
+void assimilate_text_chars(string txt, Store &s, int order);
 
 // Returns array of simplified strings from text file
 

@@ -15,16 +15,7 @@ vector<string> split(string str) {
 	return internal;
 }
 
-// Split string in queue of chars (strings)
 
-vector<string> split_chars(string str) {
-	vector<string> internal(str.length());
-	for (int i = 0; i < str.size(); i++){
-		internal[i] = str.substr(i, 1);
-	}
-
-	return internal;
-}
 
 // Get [length] words/chars up to [index] in [txt] and return a string queue
 
@@ -45,15 +36,44 @@ queue<string> get_seq(vector<string> tab, int index, int length){
 	return seq;
 }
 
+queue<string> get_seq_char(string txt, int index, int length){
+	queue<string> seq;
+	int beg, end = index;
+	if (index < length){
+		beg = 0;
+	}
+	else{
+		beg = index - length;
+	}
+
+	for (int i = beg; i <= end; i++){
+		seq.push(txt.substr(i, 1));
+	}
+
+	return seq;
+}
+
 
 // Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
 
-void assimilate_text(string txt, Store &s, int order, vector<string>(*text_splitter)(string)){
+void assimilate_text(string txt, Store &s, int order){
 	string chars;
 	queue<string> seq;
-	vector<string> tab = text_splitter(txt);
+	vector<string> tab = split(txt);
 	for (int i = 0; i < tab.size(); i++){
 		seq = get_seq(tab, i, order);
+		s.add_hits(seq, 1);
+	}
+	cerr << "ok" << endl;
+}
+
+// Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
+
+void assimilate_text_chars(string txt, Store &s, int order){
+	string chars;
+	queue<string> seq;
+	for (int i = 0; i < txt.length(); i++){
+		seq = get_seq_char(txt, i, order);
 		s.add_hits(seq, 1);
 	}
 	cerr << "ok" << endl;

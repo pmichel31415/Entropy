@@ -15,7 +15,7 @@ void incr(queue<string> test_q, Store& s){
 		cout << "Created" << endl;
 	}
 	else{
-		int h = s.get_hits(test_q);
+		llu h = s.get_hits(test_q);
 		print(test_q); cout << "is already in tree with frequence " << h << endl;
 		s.add_hits(test_q, 1);
 		cout << "Frequence incremented" << endl;
@@ -78,7 +78,7 @@ void test_construct(){
 	string txt = read_text("trois_mousquetaires.txt");
 	cout << "Assimilating : " << endl;
 	cout << txt << endl << endl;
-	assimilate_text(txt, s, 4,&split_chars);
+	assimilate_text(txt, s, 4);
 
 
 

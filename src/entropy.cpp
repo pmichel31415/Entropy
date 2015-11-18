@@ -10,8 +10,11 @@ void assim(Store& s, char* store_fname, char* text_fname, int order){
 	}
 
 	string txt = read_text(text_fname);
-
-	assimilate_text(txt, s, order, &split);
+#ifndef CHARS
+	assimilate_text(txt, s, order);
+#else
+	assimilate_text_chars(txt, s, order);
+#endif
 
 	s.close(store_fname);
 
