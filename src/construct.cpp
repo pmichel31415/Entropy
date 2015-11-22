@@ -36,8 +36,8 @@ queue<string> get_seq(vector<string> tab, int index, int length){
 	return seq;
 }
 
-queue<string> get_seq_char(string txt, int index, int length){
-	queue<string> seq;
+queue<char> get_seq_char(string txt, int index, int length){
+	queue<char> seq;
 	int beg, end = index;
 	if (index < length){
 		beg = 0;
@@ -47,7 +47,7 @@ queue<string> get_seq_char(string txt, int index, int length){
 	}
 
 	for (int i = beg; i <= end; i++){
-		seq.push(txt.substr(i, 1));
+		seq.push(txt[i]);
 	}
 
 	return seq;
@@ -56,22 +56,9 @@ queue<string> get_seq_char(string txt, int index, int length){
 
 // Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
 
-void assimilate_text(string txt, Store &s, int order){
-	string chars;
-	queue<string> seq;
-	vector<string> tab = split(txt);
-	for (int i = 0; i < tab.size(); i++){
-		seq = get_seq(tab, i, order);
-		s.add_hits(seq, 1);
-	}
-	cerr << "ok" << endl;
-}
-
-// Stores number of	conditional appearences of sequence (of length [order]) of chars in [txt] into [s]
-
 void assimilate_text_chars(string txt, Store &s, int order){
 	string chars;
-	queue<string> seq;
+	queue<char> seq;
 	for (int i = 0; i < txt.length(); i++){
 		seq = get_seq_char(txt, i, order);
 		s.add_hits(seq, 1);

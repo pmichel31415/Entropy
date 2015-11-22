@@ -3,8 +3,8 @@
 string generate_text(Store& s, int target_length, int order){
 	string txt = "";
 	int length = 0;
-	queue<string> seq;
-	string next;
+	queue<char> seq;
+	char next;
 	while (length < target_length){
 		next = s.next(seq);
 		if (seq.size() >= order)
@@ -13,7 +13,7 @@ string generate_text(Store& s, int target_length, int order){
 		seq.push(next);
 		length++;
 
-		txt.append(next);
+		txt.push_back(next);
 	}
 
 	replace(txt.begin(), txt.end(), '_', ' ');

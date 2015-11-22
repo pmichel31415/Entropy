@@ -1,6 +1,7 @@
 #include <iostream>
+#include <time.h>
 #include "Storing/store_tree.h"
-#include "Testing/test.h"
+//#include "Testing/test.h"
 #include "entropy.h"
 #include "string.h"
 
@@ -16,7 +17,7 @@ wstring wstr_from_char_arr(const char* str){
 }
 
 int main(int argc, const char* argv[]){
-	
+
 	srand(time(0));
 
 	if (argc < 2){

@@ -13,31 +13,31 @@ class Simple_tree
 {
 public:
 
-	string hd;
+	char hd;
 	vector<Simple_tree*> sons;
 	llu freq;
 	llu  sons_tot;
 
 	Simple_tree();
-	Simple_tree(string str, llu  f);
+	Simple_tree(char str, llu  f);
 
 	~Simple_tree();
 
-	void read_from_file(istream* ifs);
+	void read_from_file(FILE* f);
 
 	void write_to_file(FILE* f);
 
 	void print(ostream* ofs);
 
-	void add(queue<string> seq, llu f);
+	void add(queue<char> seq, llu f);
 
-	bool is_in(queue<string> seq);
+	bool is_in(queue<char> seq);
 
-	llu get(queue<string> seq);
+	llu get(queue<char> seq);
 
-	double get_p(queue<string> seq);
+	double get_p(queue<char> seq);
 
-	string get_rand(queue<string> prev);
+	char get_rand(queue<char> prev);
 
 	double entropy(int order);
 
